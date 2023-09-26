@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <title>A little more advanced login authentication</title>
+</head>
+
+<body>
+<script>
+let username;
+let password;
+
+username=prompt("Enter username:");
+    while (username!=="Admin"){
+        if (username=== null ||username=== ""){
+            alert("Cancelled");
+            break;
+        } else {
+            username=prompt("I don't know you. Try again: ");
+        }
+    }
+    while (username==="Admin"&&password!=="The Master"){
+        password = prompt("Enter password:");
+         if (password === null || password=== "") {
+            alert("Cancelled");
+            break;
+        } else if (password==="The Master") {
+             alert("Welcome");
+             break;
+        } else {
+            alert("Wrong password. Try again:");
+        }
+    }
+</script>
+</body>
+</html>
