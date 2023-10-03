@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Simple password authentication</title>
+</head>
+<body>
+
+<script>
+    const MAX_ATTEMPTS = 3;
+    const CORRECT_PASSWORD = 'minhthien1';
+    function checkBlank(password) {
+        /*if (password === '') return true;
+        else return false;*/
+        return password === ''; //if password is blank, (password === '') will return true, thus, the function returns true.
+    }
+
+    function checkCancel(password) {
+        /*if (password === null) return true;
+        else return false;*/
+        return password === null;
+    }
+
+    function promptUser() {
+        let password = prompt("Enter your password:");
+        return password;
+    }
+
+    function checkPassword(password) {
+        return password === CORRECT_PASSWORD;
+    }
+
+    function loginUser() {
+        let password = promptUser();
+        let attempt = 1;
+        while (!checkPassword(password) && attempt < 3) {
+            while (checkBlank(password)) {
+                password = prompt('Password cannot left blank! Try again:');
+            }
+            if (checkCancel(password)) {
+                alert('Cancelled');
+                return
+            }
+            password = prompt(`Wrong password. You have ${3 - attempt} attempt left. Try again:`)
+            while (checkBlank(password)) {
+                password = prompt('Password cannot left blank! Try again:');
+            }
+            if (checkCancel(password)) {
+                alert('Cancelled');
+                return
+            }
+            ++attempt;
+        }
+        if (checkPassword(password)) alert('Correct password');
+        else if (MAX_ATTEMPTS===3) alert('Wrong password! Max attempt reached!')
+    }
+    loginUser();
+
+</script>
+</body>
+</html>
